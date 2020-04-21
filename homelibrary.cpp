@@ -23,3 +23,17 @@ void HomeLibrary::on_actionDatabase_Settings_triggered()
     SettingWindow.exec();
 
 }
+
+void HomeLibrary::on_actionAbout_triggered()
+{
+    QMessageBox About;
+    About.setIcon(QMessageBox::Information);
+    About.setText("Home Library \tVersion:1.0 \n\nCopyright ® All rights reserved Piotr Lewandowski");
+    About.exec();
+}
+
+void HomeLibrary::on_actionCheck_connection_triggered()
+{
+    FileDriver File;
+    File.ReadSettings();
+}

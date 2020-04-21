@@ -53,6 +53,9 @@
       <property name="text">
        <string/>
       </property>
+      <property name="placeholderText">
+       <string>e.g. 127.0.0.1,1433</string>
+      </property>
      </widget>
     </item>
     <item>
@@ -63,7 +66,11 @@
      </widget>
     </item>
     <item>
-     <widget class="QLineEdit" name="DatabaseName"/>
+     <widget class="QLineEdit" name="DatabaseName">
+      <property name="placeholderText">
+       <string>Database name</string>
+      </property>
+     </widget>
     </item>
     <item>
      <widget class="QLabel" name="label_3">
@@ -73,7 +80,11 @@
      </widget>
     </item>
     <item>
-     <widget class="QLineEdit" name="User"/>
+     <widget class="QLineEdit" name="User">
+      <property name="placeholderText">
+       <string>MS Sql user</string>
+      </property>
+     </widget>
     </item>
     <item>
      <widget class="QLabel" name="label_4">
@@ -83,7 +94,14 @@
      </widget>
     </item>
     <item>
-     <widget class="QLineEdit" name="password"/>
+     <widget class="QLineEdit" name="password">
+      <property name="echoMode">
+       <enum>QLineEdit::Password</enum>
+      </property>
+      <property name="placeholderText">
+       <string>**********</string>
+      </property>
+     </widget>
     </item>
     <item>
      <widget class="QCheckBox" name="checkBox">

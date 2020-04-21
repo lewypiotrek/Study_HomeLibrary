@@ -2,4 +2,5 @@
     <qresource prefix="/img">
         <file>Img/db.png</file>
     </qresource>
+    <qresource prefix="/"/>
 </RCC>

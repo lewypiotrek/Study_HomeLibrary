@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include <dbconnection.h>
+#include "filedriver.h"
 
 namespace Ui {
 class HomeLibrary;
@@ -18,6 +19,10 @@ public:
 
 private slots:
     void on_actionDatabase_Settings_triggered();
+
+    void on_actionAbout_triggered();
+
+    void on_actionCheck_connection_triggered();
 
 private:
     Ui::HomeLibrary *ui;

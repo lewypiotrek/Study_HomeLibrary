@@ -26,14 +26,25 @@ void DatabaseSetting::on_pushButton_clicked()
     QString user = ui->User->text();
     QString password = ui->password->text();
 
+    // bool test = db->ConnectToDb("CRM","LOCALHOST\\SQLEXPRESS","sa","S*#rrQl*mA");
+    // bool test = db->ConnectToDb("CRM","127.0.0.1,1435","sa","S*#rrQl*mA");
+    db->ConnectToDb(databaseName,servername,user,password);
 
-   // bool test = db->ConnectToDb("CRM","LOCALHOST\\SQLEXPRESS","sa","S*#rrQl*mA");
+}
 
-    //bool test = db->ConnectToDb("CRM","127.0.0.1,1435","sa","S*#rrQl*mA");
-    bool test = db->ConnectToDb(databaseName,servername,user,password);
+void DatabaseSetting::on_pushButton_3_clicked()
+{
+    this->close();
+}
 
-    if (test)
-    {
-
-    }
+void DatabaseSetting::on_checkBox_stateChanged(int arg1)
+{
+        if(ui->password->echoMode() == QLineEdit::Password)
+        {
+            ui->password->setEchoMode(QLineEdit::Normal);
+        }
+        else
+        {
+            ui->password->setEchoMode(QLineEdit::Password);
+        }
 }

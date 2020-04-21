@@ -4,6 +4,7 @@
 #include <QDialog>
 #include <QPixmap>
 #include <dbconnection.h>
+#include <fstream>
 
 extern DbConnection db;
 
@@ -24,6 +25,10 @@ public:
 
 private slots:
     void on_pushButton_clicked();
+
+    void on_pushButton_3_clicked();
+
+    void on_checkBox_stateChanged(int arg1);
 
 private:
     Ui::DatabaseSetting *ui;

@@ -35,6 +35,13 @@ bool DbConnection::ConnectToDb(QString databaseName,
             QString error = "Unable to connect \nDatabse:" + databaseName + "\nServer: " + serverName;
             throw error;
         }
+        else
+        {
+            QMessageBox msg;
+            msg.setText("Connected!");
+            msg.setIcon(QMessageBox::Information);
+            msg.exec();
+        }
     }
     catch (QString & error)
     {

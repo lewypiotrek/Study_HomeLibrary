@@ -28,12 +28,14 @@ CONFIG += c++11
 SOURCES += \
         databasesetting.cpp \
         dbconnection.cpp \
+        filedriver.cpp \
         main.cpp \
         homelibrary.cpp
 
 HEADERS += \
         databasesetting.h \
         dbconnection.h \
+        filedriver.h \
         homelibrary.h
 
 FORMS += \
