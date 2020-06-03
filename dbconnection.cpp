@@ -51,7 +51,6 @@ bool DbConnection::ConnectToDb(QString databaseName,
         msg.exec();
     }
 
-
     if(status)
     {
         return true;
@@ -60,5 +59,53 @@ bool DbConnection::ConnectToDb(QString databaseName,
     {
         return false;
     }
+}
+
+// Connection status
+bool DbConnection::GetStaus()
+{
+    status = db.open();
+    return status;
+}
+
+void DbConnection::CreateDatabase()
+{
+
+}
+
+QStringList DbConnection::ExecQuery(QString Query)
+{
+    QSqlQuery QueryHandler(db);
+    QStringList List;
+
+    try
+    {
+        if(!QueryHandler.prepare(Query))
+        {
+            QString error = QueryHandler.lastError().text();
+            throw error;
+        }
+        else
+        {
+            QueryHandler.exec(Query);
+            int i = 0;
+            while(QueryHandler.next())
+            {
+                List << QueryHandler.value(i).toString();
+                i++;
+            }
+        }
+
+    }
+    catch (QString & Error)
+    {
+        QMessageBox msg;
+        msg.setText("Error(while quering): " + Error);
+        msg.setIcon(QMessageBox::Warning);
+        msg.exec();
+    }
+
+
+    return List;
 }
 

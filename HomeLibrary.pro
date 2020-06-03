@@ -26,6 +26,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 CONFIG += c++11
 
 SOURCES += \
+        connectioncheckthread.cpp \
         databasesetting.cpp \
         dbconnection.cpp \
         filedriver.cpp \
@@ -33,6 +34,7 @@ SOURCES += \
         homelibrary.cpp
 
 HEADERS += \
+        connectioncheckthread.h \
         databasesetting.h \
         dbconnection.h \
         filedriver.h \

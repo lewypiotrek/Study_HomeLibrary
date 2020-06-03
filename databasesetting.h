@@ -5,6 +5,7 @@
 #include <QPixmap>
 #include <dbconnection.h>
 #include <fstream>
+#include "connectioncheckthread.h"
 
 extern DbConnection db;
 
@@ -19,9 +20,10 @@ class DatabaseSetting : public QDialog
 public:
     explicit DatabaseSetting(QWidget *parent = nullptr);
     ~DatabaseSetting();
+
     void CopyPtrToDb(DbConnection *pDb);
     void SaveConnectionString();
-
+    friend class ConnectionCheckThread;
 
 private slots:
     void on_pushButton_clicked();

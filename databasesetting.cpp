@@ -1,6 +1,7 @@
 #include "databasesetting.h"
 #include "ui_databasesetting.h"
 
+
 DatabaseSetting::DatabaseSetting(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::DatabaseSetting)
@@ -29,6 +30,7 @@ void DatabaseSetting::on_pushButton_clicked()
     // bool test = db->ConnectToDb("CRM","LOCALHOST\\SQLEXPRESS","sa","S*#rrQl*mA");
     // bool test = db->ConnectToDb("CRM","127.0.0.1,1435","sa","S*#rrQl*mA");
     db->ConnectToDb(databaseName,servername,user,password);
+    db->GetStaus();
 
 }
 
@@ -48,3 +50,18 @@ void DatabaseSetting::on_checkBox_stateChanged(int arg1)
             ui->password->setEchoMode(QLineEdit::Password);
         }
 }
+
+void DbConnection::CheckStatus()
+{
+
+    status = db.open();
+    if(!status)
+    {
+        QMessageBox msg;
+        msg.setIcon(QMessageBox::Warning);
+        msg.setText("Database connection lost!");
+        msg.exec();
+    }
+}
+
+

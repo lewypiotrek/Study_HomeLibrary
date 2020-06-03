@@ -8,6 +8,8 @@ HomeLibrary::HomeLibrary(QWidget *parent) :
 {
     ui->setupUi(this);
     pDb = &db;
+    //StatusThread.CopyPtrToDb(pDb);
+    //StatusThread.start();
 }
 
 HomeLibrary::~HomeLibrary()
@@ -36,4 +38,11 @@ void HomeLibrary::on_actionCheck_connection_triggered()
 {
     FileDriver File;
     File.ReadSettings();
+}
+
+
+void HomeLibrary::on_pushButton_refresh_clicked()
+{
+    QStringList List = db.ExecQuery("select * from test");
+
 }
