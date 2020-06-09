@@ -30,6 +30,7 @@ private slots:
     void on_actionCheck_connection_triggered();
 
     void on_pushButton_refresh_clicked();
+    void on_actionRefresh_Data_triggered();
 };
 
 #endif // HOMELIBRARY_H

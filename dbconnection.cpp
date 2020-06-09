@@ -109,3 +109,29 @@ QStringList DbConnection::ExecQuery(QString Query)
     return List;
 }
 
+void DbConnection::CheckStatus()
+{
+
+    status = db.open();
+    if(!status)
+    {
+        QMessageBox msg;
+        msg.setIcon(QMessageBox::Warning);
+        msg.setText("Database connection lost!");
+        msg.exec();
+    }
+}
+
+QSqlQueryModel * DbConnection::ExecTableQuery(QString Query)
+{
+    if(model != nullptr)
+    {
+        delete model;
+    }
+
+    model = new QSqlQueryModel;
+    model->setQuery(Query);
+
+    return model;
+}
+

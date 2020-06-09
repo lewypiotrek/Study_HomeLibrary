@@ -14,6 +14,11 @@ public:
     FileDriver();
     void ReadSettings();
     void SaveSettings(QString databasename, QString servername, QString user, QString userpassword);
+
+    QString GetDatabaseName();
+    QString GetServerName();
+    QString GetUser();
+    QString GetUserPassword();
 private:
     fstream Handler;
 

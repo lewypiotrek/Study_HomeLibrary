@@ -25,6 +25,7 @@ FileDriver::FileDriver()
     userPassword = "0";
 }
 
+// This function read the connection string to the database that is saved in the Config.txt file.
 void FileDriver::ReadSettings()
 {
     Handler.open("Config.txt", ios::in);
@@ -43,11 +44,11 @@ void FileDriver::ReadSettings()
           getline(Handler,stream);
           databaseName = QString::fromStdString(stream);
 
-          Handler.seekg(15, ios::cur); // Server name
+          Handler.seekg(12, ios::cur); // Server name
           getline(Handler,stream);
           serverName = QString::fromStdString(stream);
 
-          Handler.seekg(9, ios::cur);   // User name
+          Handler.seekg(8, ios::cur);   // User name
           getline(Handler,stream);
           user = QString::fromStdString(stream);
 
@@ -83,6 +84,8 @@ void FileDriver::ReadSettings()
     Handler.close();
 }
 
+
+// This funcion allows you to save database connection string to the file Config.txt
 void FileDriver::SaveSettings(QString databasename, QString servername, QString user, QString userpassword)
 {
     Handler.open("Config.txt", ios::in);
@@ -101,11 +104,11 @@ void FileDriver::SaveSettings(QString databasename, QString servername, QString 
           getline(Handler,stream);
           databaseName = QString::fromStdString(stream);
 
-          Handler.seekg(15, ios::cur); // Server name
+          Handler.seekg(12, ios::cur); // Server name
           getline(Handler,stream);
           serverName = QString::fromStdString(stream);
 
-          Handler.seekg(9, ios::cur);   // User name
+          Handler.seekg(8, ios::cur);   // User name
           getline(Handler,stream);
           user = QString::fromStdString(stream);
 
@@ -134,3 +137,24 @@ void FileDriver::SaveSettings(QString databasename, QString servername, QString 
         msg.exec();
     }
 }
+
+QString FileDriver::GetDatabaseName()
+{
+    return this->databaseName;
+}
+
+QString FileDriver::GetServerName()
+{
+    return this->serverName;
+}
+
+QString FileDriver::GetUser()
+{
+    return this->user;
+}
+
+QString FileDriver::GetUserPassword()
+{
+    return this->userPassword;
+}
+

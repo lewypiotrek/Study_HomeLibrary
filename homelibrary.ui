@@ -6,19 +6,62 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1032</width>
-    <height>659</height>
+    <width>1280</width>
+    <height>720</height>
    </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>1280</width>
+    <height>720</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>1280</width>
+    <height>720</height>
+   </size>
   </property>
   <property name="windowTitle">
    <string>Home Library v.1.0  | Piotr Lewandowski</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">html {
+  .basket(#335, #dde, #aab, 40px);
+}
+
+
+  background: linear-gradient(45deg, @to-right 12%, transparent 0, transparent 88%, @to-ri ght 0), 
+              linear-gradient(135deg, transparent 37%, @to-left 0, @to-left 63%, transparent 0), 
+              linear-gradient(45deg, transparent 37%, @to-right 0, @to-right 63%, transparent 0), 
+              @background;
+  background-size: @size @size;
+</string>
   </property>
   <widget class="QWidget" name="centralWidget">
    <layout class="QVBoxLayout" name="verticalLayout">
     <item>
      <widget class="QTabWidget" name="tabWidget">
+      <property name="font">
+       <font>
+        <family>Gadugi</family>
+        <pointsize>11</pointsize>
+       </font>
+      </property>
+      <property name="tabPosition">
+       <enum>QTabWidget::North</enum>
+      </property>
+      <property name="tabShape">
+       <enum>QTabWidget::Triangular</enum>
+      </property>
       <property name="currentIndex">
-       <number>0</number>
+       <number>3</number>
+      </property>
+      <property name="documentMode">
+       <bool>false</bool>
+      </property>
+      <property name="movable">
+       <bool>true</bool>
       </property>
       <widget class="QWidget" name="tab">
        <attribute name="title">
@@ -27,8 +70,8 @@
        <widget class="QPushButton" name="pushButton_refresh">
         <property name="geometry">
          <rect>
-          <x>410</x>
-          <y>510</y>
+          <x>710</x>
+          <y>530</y>
           <width>41</width>
           <height>31</height>
          </rect>
@@ -37,26 +80,119 @@
          <string>F5</string>
         </property>
        </widget>
-       <widget class="QListView" name="listView">
+       <widget class="QGroupBox" name="groupBox">
         <property name="geometry">
          <rect>
-          <x>40</x>
-          <y>70</y>
-          <width>256</width>
-          <height>192</height>
+          <x>710</x>
+          <y>20</y>
+          <width>541</width>
+          <height>161</height>
+         </rect>
+        </property>
+        <property name="title">
+         <string>Advanced search</string>
+        </property>
+        <layout class="QHBoxLayout" name="horizontalLayout">
+         <item>
+          <layout class="QFormLayout" name="formLayout">
+           <item row="0" column="0">
+            <widget class="QLabel" name="label">
+             <property name="text">
+              <string>Author:</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="1">
+            <widget class="QLineEdit" name="lineEdit"/>
+           </item>
+           <item row="1" column="0">
+            <widget class="QLabel" name="label_2">
+             <property name="text">
+              <string>Title:</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="1">
+            <widget class="QLineEdit" name="lineEdit_2"/>
+           </item>
+           <item row="2" column="0">
+            <widget class="QLabel" name="label_3">
+             <property name="text">
+              <string>Publisher:</string>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="1">
+            <widget class="QLineEdit" name="lineEdit_3"/>
+           </item>
+           <item row="3" column="1">
+            <widget class="QPushButton" name="pushButton">
+             <property name="minimumSize">
+              <size>
+               <width>50</width>
+               <height>30</height>
+              </size>
+             </property>
+             <property name="text">
+              <string>SEARCH</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+        </layout>
+       </widget>
+       <widget class="QTableView" name="tableViewBooks">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>10</y>
+          <width>681</width>
+          <height>601</height>
          </rect>
         </property>
        </widget>
       </widget>
-      <widget class="QWidget" name="tab_3">
-       <attribute name="title">
-        <string>Page</string>
-       </attribute>
-      </widget>
       <widget class="QWidget" name="tab_2">
        <attribute name="title">
-        <string>Tab 2</string>
+        <string>Lending</string>
        </attribute>
+       <layout class="QGridLayout" name="gridLayout">
+        <item row="0" column="0">
+         <widget class="QGroupBox" name="groupBox_2">
+          <property name="title">
+           <string>Books</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="1">
+         <widget class="QGroupBox" name="groupBox_3">
+          <property name="title">
+           <string>Friends</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="tab_3">
+       <attribute name="title">
+        <string>Community</string>
+       </attribute>
+      </widget>
+      <widget class="QWidget" name="tab_4">
+       <attribute name="title">
+        <string>Notes</string>
+       </attribute>
+       <widget class="QTableView" name="tableView_2">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>10</y>
+          <width>161</width>
+          <height>471</height>
+         </rect>
+        </property>
+       </widget>
       </widget>
      </widget>
     </item>
@@ -74,7 +210,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1032</width>
+     <width>1280</width>
      <height>21</height>
     </rect>
    </property>
@@ -85,6 +221,8 @@
     <addaction name="actionDatabase_Settings"/>
     <addaction name="actionCheck_connection"/>
     <addaction name="actionAbout"/>
+    <addaction name="separator"/>
+    <addaction name="actionRefresh_Data"/>
    </widget>
    <addaction name="menuOptions"/>
   </widget>
@@ -102,6 +240,11 @@
   <action name="actionCheck_connection">
    <property name="text">
     <string>Check connection...</string>
+   </property>
+  </action>
+  <action name="actionRefresh_Data">
+   <property name="text">
+    <string>Refresh Data</string>
    </property>
   </action>
  </widget>

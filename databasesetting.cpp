@@ -51,17 +51,3 @@ void DatabaseSetting::on_checkBox_stateChanged(int arg1)
         }
 }
 
-void DbConnection::CheckStatus()
-{
-
-    status = db.open();
-    if(!status)
-    {
-        QMessageBox msg;
-        msg.setIcon(QMessageBox::Warning);
-        msg.setText("Database connection lost!");
-        msg.exec();
-    }
-}
-
-

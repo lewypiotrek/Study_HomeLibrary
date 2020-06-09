@@ -38,6 +38,9 @@ void HomeLibrary::on_actionCheck_connection_triggered()
 {
     FileDriver File;
     File.ReadSettings();
+    
+    
+    
 }
 
 
