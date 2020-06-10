@@ -7,6 +7,9 @@ DatabaseSetting::DatabaseSetting(QWidget *parent) :
     ui(new Ui::DatabaseSetting)
 {
     ui->setupUi(this);
+    ui->label_5->hide();
+
+
 }
 
 
@@ -22,16 +25,14 @@ void DatabaseSetting::CopyPtrToDb(DbConnection *pDb)
 
 void DatabaseSetting::on_pushButton_clicked()
 {
+    // After click button "Try to connect" the connection attempt will be begin
     QString databaseName = ui->DatabaseName->text();
     QString servername = ui->ServerName->text();
     QString user = ui->User->text();
     QString password = ui->password->text();
 
-    // bool test = db->ConnectToDb("CRM","LOCALHOST\\SQLEXPRESS","sa","S*#rrQl*mA");
-    // bool test = db->ConnectToDb("CRM","127.0.0.1,1435","sa","S*#rrQl*mA");
     db->ConnectToDb(databaseName,servername,user,password);
-    db->GetStaus();
-
+    //db->GetStaus();
 }
 
 void DatabaseSetting::on_pushButton_3_clicked()
@@ -51,3 +52,17 @@ void DatabaseSetting::on_checkBox_stateChanged(int arg1)
         }
 }
 
+
+void DatabaseSetting::on_pushButton_2_clicked()
+{
+    // Save connection string to the Config.txt
+
+    FileDriver File;
+    QString databaseName = ui->DatabaseName->text();
+    QString serverName = ui->ServerName->text();
+    QString user = ui->User->text();
+    QString password = ui->password->text();
+
+    File.SaveSettings(databaseName,serverName,user,password);
+    ui->label_5->setHidden(false);
+}

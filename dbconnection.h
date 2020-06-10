@@ -17,6 +17,7 @@ public:
     bool ConnectToDb(QString databaseName, QString serverName, QString user, QString userPassword);
     bool GetStaus();
     void CheckStatus();
+    QString GetDatabaseName();
 
     // Quering
     QStringList ExecQuery(QString Query);

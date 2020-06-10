@@ -135,3 +135,7 @@ QSqlQueryModel * DbConnection::ExecTableQuery(QString Query)
     return model;
 }
 
+QString DbConnection::GetDatabaseName()
+{
+    return databaseName;
+}

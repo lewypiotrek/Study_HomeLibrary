@@ -36,8 +36,25 @@ void HomeLibrary::on_actionAbout_triggered()
 
 void HomeLibrary::on_actionCheck_connection_triggered()
 {
-    FileDriver File;
-    File.ReadSettings();
+    // If you're connected to the database you'll receive message.
+    // Otherwise connection string will be readed from Config.txt and the connection will be attempted
+
+    QMessageBox msg;
+
+    if(db.GetStaus())
+    {
+        msg.setIcon(QMessageBox::Information);
+        msg.setText("You are connected to the database: " + db.GetDatabaseName());
+        msg.exec();
+    }
+    else
+    {
+        FileDriver File;
+        File.ReadSettings();
+        db.ConnectToDb(File.GetDatabaseName(),File.GetServerName(),File.GetUser(),File.GetUserPassword());
+    }
+
+
 }
 
 

@@ -59,7 +59,7 @@ void FileDriver::ReadSettings()
        }
 
        QMessageBox test;
-       test.setText(databaseName +"\n" + serverName + "\n" + user + "\n" + userPassword);
+       test.setText("DATABASE NAME: " + databaseName +"\nSERVER NAME: " + serverName + "\nUSER: " + user + "\nPASSWORD: " + userPassword);
        test.exec();
 
     }
