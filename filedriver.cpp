@@ -18,7 +18,6 @@ FileDriver::FileDriver()
         }
     }
 
-
     databaseName = "0";
     serverName = "0";
     user = "0";
@@ -88,7 +87,7 @@ void FileDriver::ReadSettings()
 // This funcion allows you to save database connection string to the file Config.txt
 void FileDriver::SaveSettings(QString databasename, QString servername, QString user, QString userpassword)
 {
-    Handler.open("Config.txt", ios::in);
+    Handler.open("Config.txt", ios::out);
     string stream = "0";
 
     try
@@ -100,27 +99,22 @@ void FileDriver::SaveSettings(QString databasename, QString servername, QString 
        }
        else
        {
-          Handler.seekg(56);        // Database name
-          getline(Handler,stream);
-          databaseName = QString::fromStdString(stream);
 
-          Handler.seekg(12, ios::cur); // Server name
-          getline(Handler,stream);
-          serverName = QString::fromStdString(stream);
+           Handler << "## CONFIGURATION DATABASE CONNECTIONS ##"<< std::endl;
+           //std::endl << "USERNAME: 0" << std::endl << "PASSWORD: 0"<< std::endl;
 
-          Handler.seekg(8, ios::cur);   // User name
-          getline(Handler,stream);
-          user = QString::fromStdString(stream);
+           Handler << "DATABASENAME: " << databasename.toUtf8().constData() << std::endl;
+           Handler << "DATABSESERVER: " << servername.toUtf8().constData() << std::endl;
+           Handler << "USERNAME: " << user.toUtf8().constData() << std::endl;;
+           Handler << "PASSWORD: " << userpassword.toUtf8().constData() << std::endl;
 
-          Handler.seekg(9, ios::cur);   // User name
-          getline(Handler,stream);
-          userPassword = QString::fromStdString(stream);
-
+           Handler << "#########################################";
        }
 
     }
     catch (QString & error)
     {
+       Handler.close();
        QMessageBox msg;
        msg.setText(error);
        msg.setWindowTitle("Error !");
@@ -136,6 +130,7 @@ void FileDriver::SaveSettings(QString databasename, QString servername, QString 
         msg.setIcon(QMessageBox::Warning);
         msg.exec();
     }
+    Handler.close();
 }
 
 QString FileDriver::GetDatabaseName()
