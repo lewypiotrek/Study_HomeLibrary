@@ -3,9 +3,9 @@
 Home Library managment software. This program allows user to managment his own library.
 
 - TECHNOLOGIES:
-  1. MS SQL
-  2. C++
-  3. Qt framwork
+  - MS SQL
+  - C++
+  - Qt framwork
 
 - REQUIREMENTS: -
 
