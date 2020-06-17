@@ -1,6 +1,6 @@
 # Study_HomeLibrary
 
-Home Library management software. This program allows users to manage their own library.
+Home Library allows users to manage their own library! Check it!
 
 - TECHNOLOGIES:
   - MS SQL
