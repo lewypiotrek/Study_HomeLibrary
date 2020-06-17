@@ -27,8 +27,13 @@ Home Library management software. This program allows users to manage their own 
 
 
 	- **Database Save connection string**:
-You don't have to insert connections string every time when you open the program. There is an option to save your connection string in the file Config.txt. You can do it via app Option > Database Settings > Insert your connection string and click "Save" button your credentials will be saved in Config.txt file. After that when you open program again you can just click Option > Check connection... and the program will automatically check credentials and perform connection attempt 
+	You don't have to insert connections string every time when you open the program. There is an option to save your connection string in the file Config.txt. You can do it via app Option > Database Settings > Insert your connection string and click "Save" button your credentials will be saved in Config.txt file. After that when you open program again you can just click Option > Check connection... and the program will automatically check credentials and perform connection attemp.
+
+	- **Tab: Your Books**:
+	In this tab you can add/ modify and delete your books. On the right side you have main GropBox with all functionalities. The data in your view should be refreshed automaticly, but you can also do it manually via Options > Refresh.
 	
+	- **Tab: Notes:**
+	This tab alows you to add any note. If you have any reflections related to one of your book, you can save it and match with the right book.  
 
 
 
