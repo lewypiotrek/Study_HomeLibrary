@@ -24,7 +24,7 @@ or
 
 Application - Open my program, click "Options" in the top left corner. Then select "Database settings". You'll see a new window where you can insert your connection string to the database. Please do it and next click button "Create new database". In this case, you need to be careful because application will connect to your instance, and if a database named "HomeLibrary" exist application will not create a new database. If you want to create a clear database you have to delete the existing database. 
 	
- -- Database Save connection string:
+  - Database Save connection string:
 You don't have to insert connections string every time when you open the program. There is an option to save your connection string in the file Config.txt. You can do it via app Option > Database Settings > Insert your connection string and click "Save" button your credentials will be saved in Config.txt file. After that when you open program again you can just click Option > Check connection... and the program will automatically check credentials and perform connection attempt 
 	
 
