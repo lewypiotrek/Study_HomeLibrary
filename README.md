@@ -10,7 +10,7 @@ Home Library management software. This program allows users to manage their own 
 
 - REQUIREMENTS:
 
-	- Database - Application(version 1.0) works with MS SQL database, so you have to install local MS SQL instance or create an instance in the cloud. 
+	- Database engine- Application(version 1.0) works with MS SQL database.
 	- QT Framework.
 -------------------------------------------------------------------------	
 
