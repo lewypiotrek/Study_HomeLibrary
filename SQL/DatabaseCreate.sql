@@ -18,8 +18,6 @@ ELSE
 	BEGIN
 		CREATE DATABASE HomeLibrary;
 	END
-
-USE HomeLibrary
 END TRY
 
 BEGIN CATCH
@@ -27,6 +25,7 @@ BEGIN CATCH
 END CATCH
 GO
 
+USE HomeLibrary;
 
 --------------------------------
 -- CREATING STORED PROCEDURES --
@@ -51,9 +50,11 @@ BEGIN
 		CREATE TABLE Books
 			(
 				BooksId				int IDENTITY(1,1) PRIMARY KEY,
+				Barcode				varchar(200),
 				Title				varchar(200) NOT NULL,
 				Author				varchar(200),
 				Publisher			varchar(150),
+				PublicationDate		varchar(8),
 				CreationTImestamp	datetime DEFAULT GETUTCDATE(),				
 			);
 
@@ -133,6 +134,37 @@ EXEC DatabaseCreation;
 GO
 
 
+-- CREATING ShowBooks
+--------------------------------
+
+IF EXISTS ( SELECT * FROM sys.procedures WHERE [name] = 'ShowBooks')
+BEGIN
+	DROP PROCEDURE dbo.ShowBooks;
+END
+GO
+
+CREATE PROCEDURE ShowBooks @Barcode varchar(200), @Title varchar(200), @Author varchar(200), @Publisher varchar(150), @top int
+AS
+BEGIN
+	SELECT TOP (@top)
+		Barcode,
+		Title,
+		Author,
+		Publisher,
+		PublicationDate as [Publication Date]
+	FROM
+		dbo.Books
+	WHERE
+		Title LIKE '%'+ @Title + '%' OR
+		Author LIKE '%'+ @Author + '%' OR
+		Barcode LIKE '%'+ @Barcode + '%' OR
+		Publisher LIKE '%'+ @Publisher + '%' OR
+	ORDER BY
+		Title
+END
+GO
+
+
 --------------------------------
 -- CREATING VIEWS --
 --------------------------------
@@ -150,7 +182,5 @@ CREATE VIEW MyCommunityView AS
 	WHERE
 		 isActive = 1;
 GO
-
-
 
 

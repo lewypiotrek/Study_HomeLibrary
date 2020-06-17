@@ -101,13 +101,10 @@ void FileDriver::SaveSettings(QString databasename, QString servername, QString 
        {
 
            Handler << "## CONFIGURATION DATABASE CONNECTIONS ##"<< std::endl;
-           //std::endl << "USERNAME: 0" << std::endl << "PASSWORD: 0"<< std::endl;
-
-           Handler << "DATABASENAME: " << databasename.toUtf8().constData() << std::endl;
-           Handler << "DATABSESERVER: " << servername.toUtf8().constData() << std::endl;
-           Handler << "USERNAME: " << user.toUtf8().constData() << std::endl;;
-           Handler << "PASSWORD: " << userpassword.toUtf8().constData() << std::endl;
-
+           Handler << "DATABASENAME: "  << databasename.toUtf8().constData() << std::endl;
+           Handler << "DATABSESERVER: " << servername.toUtf8().constData()   << std::endl;
+           Handler << "USERNAME: "      << user.toUtf8().constData()         << std::endl;
+           Handler << "PASSWORD: "      << userpassword.toUtf8().constData() << std::endl;
            Handler << "#########################################";
        }
 
@@ -133,6 +130,7 @@ void FileDriver::SaveSettings(QString databasename, QString servername, QString 
     Handler.close();
 }
 
+// Getters functions to accese to the private fileds
 QString FileDriver::GetDatabaseName()
 {
     return this->databaseName;

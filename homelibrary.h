@@ -28,8 +28,8 @@ private slots:
     void on_actionDatabase_Settings_triggered();
     void on_actionAbout_triggered();
     void on_actionCheck_connection_triggered();
-    void on_pushButton_refresh_clicked();
     void on_actionRefresh_Data_triggered();
+    void on_comboBox_currentIndexChanged(int index);
 };
 
 #endif // HOMELIBRARY_H

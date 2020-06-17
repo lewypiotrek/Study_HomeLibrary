@@ -58,19 +58,31 @@ void HomeLibrary::on_actionCheck_connection_triggered()
 }
 
 
-void HomeLibrary::on_pushButton_refresh_clicked()
-{
-    ui->tableViewBooks->setModel(db.ExecTableQuery("select * from test;"));
-
-}
-
 void HomeLibrary::on_actionRefresh_Data_triggered()
 {
     if(db.GetStaus())
     {
-        ui->tableViewBooks->setModel(db.ExecTableQuery("select * from Books;"));
+        int top =ui->comboBox->currentIndex();
 
+        if(top != 6)
+            top = (ui->comboBox->currentIndex() +1) * 10;
+        else
+            top = 1000;
+
+        // Exec procedure that will show specific books
+        ui->tableViewBooks->setModel(db.ExecTableQuery("EXEC ShowBooks @Barcode = '', @Title = '', @Author = '', @Publisher = '', @Top = '"+ QString::number(top) + "';"));
 
     }
 
+}
+
+void HomeLibrary::on_comboBox_currentIndexChanged(int index)
+{
+    if(index != 6)
+        index = (ui->comboBox->currentIndex() +1) * 10;
+    else
+        index = 1000;
+
+    // Exec procedure that will show specific books
+    ui->tableViewBooks->setModel(db.ExecTableQuery("EXEC ShowBooks @Barcode = '', @Title = '', @Author = '', @Publisher = '', @Top = '"+ QString::number(index) + "';"));
 }
