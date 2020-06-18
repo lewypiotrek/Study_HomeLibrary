@@ -24,12 +24,16 @@ private:
     DbConnection db,*pDb;
     ConnectionCheckThread StatusThread;
 
+public:
+    void RefreshData();
+
 private slots:
     void on_actionDatabase_Settings_triggered();
     void on_actionAbout_triggered();
     void on_actionCheck_connection_triggered();
     void on_actionRefresh_Data_triggered();
     void on_comboBox_currentIndexChanged(int index);
+    void on_Button_Search_clicked();
 };
 
 #endif // HOMELIBRARY_H

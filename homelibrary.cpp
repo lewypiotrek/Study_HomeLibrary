@@ -53,27 +53,14 @@ void HomeLibrary::on_actionCheck_connection_triggered()
         File.ReadSettings();
         db.ConnectToDb(File.GetDatabaseName(),File.GetServerName(),File.GetUser(),File.GetUserPassword());
     }
-
-
+    // RefreshData will fill all empty fields
+    RefreshData();
 }
 
 
 void HomeLibrary::on_actionRefresh_Data_triggered()
 {
-    if(db.GetStaus())
-    {
-        int top =ui->comboBox->currentIndex();
-
-        if(top != 6)
-            top = (ui->comboBox->currentIndex() +1) * 10;
-        else
-            top = 1000;
-
-        // Exec procedure that will show specific books
-        ui->tableViewBooks->setModel(db.ExecTableQuery("EXEC ShowBooks @Barcode = '', @Title = '', @Author = '', @Publisher = '', @Top = '"+ QString::number(top) + "';"));
-
-    }
-
+    RefreshData();
 }
 
 void HomeLibrary::on_comboBox_currentIndexChanged(int index)
@@ -85,4 +72,62 @@ void HomeLibrary::on_comboBox_currentIndexChanged(int index)
 
     // Exec procedure that will show specific books
     ui->tableViewBooks->setModel(db.ExecTableQuery("EXEC ShowBooks @Barcode = '', @Title = '', @Author = '', @Publisher = '', @Top = '"+ QString::number(index) + "';"));
+}
+
+
+void HomeLibrary::RefreshData()
+{
+    if(db.GetStaus())
+    {
+        ui->status->setText("STATUS: CONNECTED");
+
+        int top =ui->comboBox->currentIndex();
+        if(top != 6)
+            top = (ui->comboBox->currentIndex() +1) * 10;
+        else
+            top = 1000;
+
+        // Exec procedure that will show specific books
+        ui->tableViewBooks->setModel(db.ExecTableQuery("EXEC ShowBooks @Barcode = '', @Title = '', @Author = '', @Publisher = '', @Top = '"+ QString::number(top) + "';"));
+
+    }
+    else
+    {
+        ui->status->setText("STATUS: DISCONNECTED");
+    }
+}
+
+
+void HomeLibrary::on_Button_Search_clicked()
+{
+    // First we're getting information about row on page, then serach filters
+    QString barcode, title, publisher, year, author;
+
+    int top =ui->comboBox->currentIndex();
+    if(top != 6)
+        top = (ui->comboBox->currentIndex() +1) * 10;
+    else
+        top = 1000;
+
+    barcode = ui->lineEdit_Barcode->text();
+    title = ui->lineEdit_Title->text();
+    publisher = ui->lineEdit_Publisher->text();
+    year = ui->lineEdit_Year->text();
+    author = ui->lineEdit_Author->text();
+
+
+    // Exec procedure that will show specific books
+    try
+    {
+        QString query = "EXEC ShowBooks @Barcode = '" + barcode + "', @Title = '" + title + "', @Author = '" + author + "', @Publisher = '" + publisher + "', @Top = '"+ QString::number(top) + "'";
+        qDebug() << query;
+        ui->tableViewBooks->setModel(db.ExecTableQuery(query));
+
+    }
+    catch (...)
+    {
+        qDebug() << "SQL Query error: " << db.lastError();
+    }
+
+
 }

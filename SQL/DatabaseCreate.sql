@@ -50,7 +50,7 @@ BEGIN
 		CREATE TABLE Books
 			(
 				BooksId				int IDENTITY(1,1) PRIMARY KEY,
-				Barcode				varchar(200),
+				Barcode				varchar(200) UNIQUE,
 				Title				varchar(200) NOT NULL,
 				Author				varchar(200),
 				Publisher			varchar(150),
@@ -155,32 +155,50 @@ BEGIN
 	FROM
 		dbo.Books
 	WHERE
-		Title LIKE '%'+ @Title + '%' OR
-		Author LIKE '%'+ @Author + '%' OR
-		Barcode LIKE '%'+ @Barcode + '%' OR
-		Publisher LIKE '%'+ @Publisher + '%' OR
+		Barcode LIKE '%'+ @Barcode + '%' AND
+		Title LIKE '%'+ @Title + '%' AND
+		Author LIKE '%'+ @Author + '%' AND
+		Publisher LIKE '%'+ @Publisher + '%'
 	ORDER BY
 		Title
 END
 GO
 
-
 --------------------------------
 -- CREATING VIEWS --
 --------------------------------
 
-PRINT 'Creating views...'
+--PRINT 'Creating views...'
 
--- All active users
-CREATE VIEW MyCommunityView AS	
-	SELECT 
-		[Name] AS Name,
-		[Address],
-		[info] AS Information
-	FROM 
-		Community
-	WHERE
-		 isActive = 1;
-GO
+---- All active users
+--CREATE VIEW MyCommunityView AS	
+--	SELECT 
+--		[Name] AS Name,
+--		[Address],
+--		[info] AS Information
+--	FROM 
+--		Community
+--	WHERE
+--		 isActive = 1;
 
 
+
+
+---------------------
+-- TESTING DATA
+---------------------
+
+
+
+DECLARE @Counter as INT = 1;
+WHILE @Counter <= 25
+BEGIN
+	INSERT INTO Books (barcode,Title,Author,Publisher) 
+	VALUES ('test' + CAST(@Counter as varchar),'test' +  CAST(@Counter as varchar),'test' +  CAST(@Counter as varchar),'test' +  CAST(@Counter as varchar))
+	
+	SET @Counter = @Counter + 1;
+END;
+
+-----------------------
+
+--EXEC ShowBooks @Barcode = '', @Title = '', @Author = '', @Publisher = '', @Top = '10';
