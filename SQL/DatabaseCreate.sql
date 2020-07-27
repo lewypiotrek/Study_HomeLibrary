@@ -164,6 +164,34 @@ BEGIN
 END
 GO
 
+-- CREATING ShowUsers
+--------------------------------
+
+IF EXISTS ( SELECT * FROM sys.procedures WHERE [name] = 'ShowUsers')
+BEGIN
+	DROP PROCEDURE dbo.ShowUsers;
+END
+GO
+
+CREATE PROCEDURE ShowUsers @Name varchar(200), @Address varchar(200), @Info varchar(200), @top int
+AS
+BEGIN
+	SELECT TOP (@top)
+		[Name],
+		[Address],
+		[Info]
+	FROM
+		dbo.Community
+	WHERE
+		[Name] LIKE '%'+ @Name + '%' AND
+		[Address] LIKE '%'+ @Address + '%' AND
+		Info LIKE '%'+ @Info + '%' AND
+		isActive = 1
+	ORDER BY
+		[Name]
+END
+GO
+
 --------------------------------
 -- CREATING VIEWS --
 --------------------------------

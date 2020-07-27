@@ -5,13 +5,14 @@ Home Library allows users to manage their own library! Check it!
 - TECHNOLOGIES:
   - MS SQL
   - C++
+  - T-SQL
   - Qt framework
 
 
 - REQUIREMENTS:
-
 	- Database engine- Application(version 1.0) works with MS SQL database.
 	- QT Framework.
+	
 -------------------------------------------------------------------------	
 
 - **GUIDE HOW TO USE IT**
