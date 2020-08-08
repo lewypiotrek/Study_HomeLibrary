@@ -20,6 +20,7 @@ DatabaseSetting::~DatabaseSetting()
 
 void DatabaseSetting::CopyPtrToDb(DbConnection *pDb)
 {
+    // Copy constructor - coping pointer to database driver object
     db = pDb;
 }
 

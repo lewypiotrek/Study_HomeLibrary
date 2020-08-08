@@ -6,6 +6,7 @@
 #include <QMessageBox>
 #include <QtDebug>
 #include <QSqlQueryModel>
+#include <QTableView>
 
 class DbConnection:public QSqlDatabase
 {
@@ -21,7 +22,8 @@ public:
 
     // Quering
     QStringList ExecQuery(QString Query);
-    QSqlQueryModel * ExecTableQuery(QString Query);
+    QSqlQueryModel ExecTableQuery(QString Query);
+    void ClearTableViewModel();
 
 private:
 
@@ -34,11 +36,6 @@ private:
     QSqlDatabase db;
     QString connectionString;
 
-    // Database creation
-    void CreateDatabase();  // Create empty database
-
-    // Quering
-    QSqlQueryModel *model;
 
 };
 

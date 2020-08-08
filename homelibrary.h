@@ -22,7 +22,10 @@ public:
 private:
     Ui::HomeLibrary *ui;
     DbConnection db,*pDb;
-    ConnectionCheckThread StatusThread;
+    QSqlQueryModel *bookTableModel;
+    QSqlQueryModel *usersTableModel;
+    QSqlQueryModel *bookLendingTableModel;
+
 
 public:
     void RefreshData();

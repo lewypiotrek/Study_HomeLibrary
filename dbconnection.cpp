@@ -68,11 +68,6 @@ bool DbConnection::GetStaus()
     return status;
 }
 
-void DbConnection::CreateDatabase()
-{
-
-}
-
 QStringList DbConnection::ExecQuery(QString Query)
 {
     QSqlQuery QueryHandler(db);
@@ -120,19 +115,6 @@ void DbConnection::CheckStatus()
         msg.setText("Database connection lost!");
         msg.exec();
     }
-}
-
-QSqlQueryModel * DbConnection::ExecTableQuery(QString Query)
-{
-    if(model != nullptr)
-    {
-        delete model;
-    }
-
-    model = new QSqlQueryModel;
-    model->setQuery(Query);
-
-    return model;
 }
 
 QString DbConnection::GetDatabaseName()

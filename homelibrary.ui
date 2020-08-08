@@ -344,7 +344,7 @@ QPushButton:pressed  {
                </property>
                <layout class="QVBoxLayout" name="verticalLayout_2">
                 <item>
-                 <widget class="QTableView" name="tableView"/>
+                 <widget class="QTableView" name="tableViewBookLending"/>
                 </item>
                </layout>
               </widget>
@@ -362,7 +362,7 @@ QPushButton:pressed  {
                </property>
                <layout class="QVBoxLayout" name="verticalLayout_3">
                 <item>
-                 <widget class="QTableView" name="tableView_3"/>
+                 <widget class="QTableView" name="tableViewUsers"/>
                 </item>
                </layout>
               </widget>
