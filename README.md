@@ -26,7 +26,7 @@ Home Library allows users to manage their own library! Check it!
 
 	or 
 
-	Application - Open my program, click "Options" in the top left corner. Then select "Database settings". You'll see a new window where you can insert your connection string to the database. Please do it and next click button "Create new database". In this case, you need to be careful because application will connect to your instance, and if a database named "HomeLibrary" exist application will not create a new database, so If you want to create a clear database, firstly you have to delete the existing database. 
+	Application - Open my program, click "Options" in the top left corner. Then select "Database settings". You'll see a new window where you can insert your connection string to the database. Please do it and next click button "Create new database". In this case, you need to be careful because application will connect to your instance, and if a database named "HomeLibrary" already exists, application will not create a any database, so If you want to create a clear database, firstly you have to ensure that you don't have the same database on this SQL instance.
 
 
 	- **Database - Save connection string**:
@@ -39,10 +39,10 @@ Home Library allows users to manage their own library! Check it!
 	This tab alows you to add any note. If you have any reflections related to one of your book, you can save it and match with the right book.  
 	
 	- **Tab: Lending**
-	In this place you can lend your book to your friends. On the left side select book and on the right side select friend. After that click button "Borrow"
+	In this place you can lend your book to your friends. On the left side select book and on the right side select friend. After that click button "Lend a book"
 	
-	- **Tab: Community**
-	In this tab you can manage your friends network and also check how many books has been borrowed by specific person.
+	- **Tab: Note**
+	In this tab you can add your notes for example some thoughts about your new book. 
  
 
 -------------------------------------------------------------------------
