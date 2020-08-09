@@ -5,7 +5,6 @@
 #include <QPixmap>
 #include <dbconnection.h>
 #include <fstream>
-#include "connectioncheckthread.h"
 #include <filedriver.h>
 
 

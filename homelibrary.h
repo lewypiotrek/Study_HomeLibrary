@@ -4,8 +4,6 @@
 #include <QMainWindow>
 #include <dbconnection.h>
 #include "filedriver.h"
-#include "connectioncheckthread.h"
-
 
 namespace Ui {
 class HomeLibrary;
@@ -37,6 +35,7 @@ private slots:
     void on_actionRefresh_Data_triggered();
     void on_comboBox_currentIndexChanged(int index);
     void on_Button_Search_clicked();
+    void on_pushButton_LendingSearch_clicked();
 };
 
 #endif // HOMELIBRARY_H

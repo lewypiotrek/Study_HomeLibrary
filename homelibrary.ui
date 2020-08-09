@@ -78,7 +78,7 @@ QPushButton:pressed  {
        <enum>QTabWidget::Triangular</enum>
       </property>
       <property name="currentIndex">
-       <number>1</number>
+       <number>3</number>
       </property>
       <property name="documentMode">
        <bool>false</bool>
@@ -370,9 +370,28 @@ QPushButton:pressed  {
             </layout>
            </item>
            <item row="0" column="1">
-            <layout class="QGridLayout" name="gridLayout_4">
+            <layout class="QGridLayout" name="gridLayout_LendingMenu">
+             <item row="5" column="0">
+              <widget class="QLineEdit" name="lineEdit_Author_2"/>
+             </item>
+             <item row="17" column="0">
+              <widget class="QLineEdit" name="lineEdit_2"/>
+             </item>
+             <item row="18" column="0">
+              <widget class="QPushButton" name="pushButton_Lend">
+               <property name="minimumSize">
+                <size>
+                 <width>0</width>
+                 <height>30</height>
+                </size>
+               </property>
+               <property name="text">
+                <string>Lend a book</string>
+               </property>
+              </widget>
+             </item>
              <item row="2" column="0">
-              <widget class="QLabel" name="label_title">
+              <widget class="QLabel" name="label_Title_2">
                <property name="sizePolicy">
                 <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
                  <horstretch>0</horstretch>
@@ -384,49 +403,13 @@ QPushButton:pressed  {
                </property>
               </widget>
              </item>
-             <item row="9" column="0">
-              <widget class="QPushButton" name="pushButton">
-               <property name="minimumSize">
-                <size>
-                 <width>0</width>
-                 <height>35</height>
-                </size>
-               </property>
-               <property name="text">
-                <string>Search</string>
-               </property>
-              </widget>
-             </item>
-             <item row="4" column="0">
-              <widget class="QLabel" name="label">
-               <property name="sizePolicy">
-                <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-                 <horstretch>0</horstretch>
-                 <verstretch>0</verstretch>
-                </sizepolicy>
-               </property>
-               <property name="text">
-                <string>Author</string>
-               </property>
-              </widget>
+             <item row="3" column="0">
+              <widget class="QLineEdit" name="lineEdit_Title_2"/>
              </item>
              <item row="7" column="0">
-              <widget class="QLabel" name="label_userName">
+              <widget class="QLabel" name="label_UserName">
                <property name="text">
                 <string>User name</string>
-               </property>
-              </widget>
-             </item>
-             <item row="0" column="0">
-              <widget class="QLabel" name="label_barcode">
-               <property name="sizePolicy">
-                <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-                 <horstretch>0</horstretch>
-                 <verstretch>0</verstretch>
-                </sizepolicy>
-               </property>
-               <property name="text">
-                <string>Barcode</string>
                </property>
               </widget>
              </item>
@@ -443,20 +426,80 @@ QPushButton:pressed  {
                </property>
               </spacer>
              </item>
-             <item row="8" column="0">
-              <widget class="QLineEdit" name="lineEdit_userName"/>
+             <item row="0" column="0">
+              <widget class="QLabel" name="label_Barcode_2">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="text">
+                <string>Barcode</string>
+               </property>
+              </widget>
+             </item>
+             <item row="14" column="0">
+              <widget class="QLabel" name="label_BookBarcode">
+               <property name="text">
+                <string>Book barcode:</string>
+               </property>
+              </widget>
+             </item>
+             <item row="19" column="0">
+              <layout class="QFormLayout" name="formLayout_LendingSubMen"/>
              </item>
              <item row="1" column="0">
-              <widget class="QLineEdit" name="lineEdit_barcode"/>
+              <widget class="QLineEdit" name="lineEdit_Barcode_2"/>
              </item>
-             <item row="3" column="0">
-              <widget class="QLineEdit" name="lineEdit_title"/>
+             <item row="9" column="0">
+              <widget class="QPushButton" name="pushButton_LendingSearch">
+               <property name="minimumSize">
+                <size>
+                 <width>0</width>
+                 <height>35</height>
+                </size>
+               </property>
+               <property name="text">
+                <string>Search</string>
+               </property>
+              </widget>
              </item>
-             <item row="5" column="0">
-              <widget class="QLineEdit" name="lineEdit"/>
+             <item row="15" column="0">
+              <widget class="QLineEdit" name="lineEdit_3"/>
+             </item>
+             <item row="4" column="0">
+              <widget class="QLabel" name="label_Author_2">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="text">
+                <string>Author</string>
+               </property>
+              </widget>
+             </item>
+             <item row="16" column="0">
+              <widget class="QLabel" name="label_UserBarcode">
+               <property name="text">
+                <string>User:</string>
+               </property>
+              </widget>
              </item>
              <item row="6" column="0">
-              <widget class="Line" name="line">
+              <widget class="Line" name="Separator">
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+               </property>
+              </widget>
+             </item>
+             <item row="8" column="0">
+              <widget class="QLineEdit" name="lineEdit_UserName"/>
+             </item>
+             <item row="11" column="0">
+              <widget class="Line" name="Separator_3">
                <property name="orientation">
                 <enum>Qt::Horizontal</enum>
                </property>
@@ -478,16 +521,79 @@ QPushButton:pressed  {
        <attribute name="title">
         <string>Notes</string>
        </attribute>
-       <widget class="QTableView" name="tableView_2">
-        <property name="geometry">
-         <rect>
-          <x>10</x>
-          <y>10</y>
-          <width>161</width>
-          <height>471</height>
-         </rect>
-        </property>
-       </widget>
+       <layout class="QHBoxLayout" name="horizontalLayout_3">
+        <item>
+         <layout class="QGridLayout" name="gridLayout_4">
+          <item row="0" column="2">
+           <widget class="QGroupBox" name="groupBox_2">
+            <property name="font">
+             <font>
+              <weight>75</weight>
+              <bold>true</bold>
+             </font>
+            </property>
+            <property name="title">
+             <string>Insert your note</string>
+            </property>
+            <layout class="QHBoxLayout" name="horizontalLayout_2">
+             <item>
+              <widget class="QTextEdit" name="textEdi_Note">
+               <property name="font">
+                <font>
+                 <pointsize>9</pointsize>
+                </font>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="Line" name="Separator_2">
+            <property name="orientation">
+             <enum>Qt::Vertical</enum>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="0">
+           <widget class="QPushButton" name="pushButton_AddNote">
+            <property name="minimumSize">
+             <size>
+              <width>0</width>
+              <height>25</height>
+             </size>
+            </property>
+            <property name="text">
+             <string>Add</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="0">
+           <widget class="QPushButton" name="pushButton_DeleteNote">
+            <property name="minimumSize">
+             <size>
+              <width>0</width>
+              <height>25</height>
+             </size>
+            </property>
+            <property name="text">
+             <string>Delete</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="0">
+           <widget class="QListView" name="listView_Note">
+            <property name="maximumSize">
+             <size>
+              <width>200</width>
+              <height>16777215</height>
+             </size>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+       </layout>
       </widget>
      </widget>
     </item>

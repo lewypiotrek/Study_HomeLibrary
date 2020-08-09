@@ -8,10 +8,7 @@ DatabaseSetting::DatabaseSetting(QWidget *parent) :
 {
     ui->setupUi(this);
     ui->label_5->hide();
-
-
 }
-
 
 DatabaseSetting::~DatabaseSetting()
 {
@@ -31,9 +28,7 @@ void DatabaseSetting::on_pushButton_clicked()
     QString servername = ui->ServerName->text();
     QString user = ui->User->text();
     QString password = ui->password->text();
-
     db->ConnectToDb(databaseName,servername,user,password);
-    //db->GetStaus();
 }
 
 void DatabaseSetting::on_pushButton_3_clicked()

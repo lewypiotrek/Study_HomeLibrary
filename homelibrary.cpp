@@ -14,6 +14,10 @@ HomeLibrary::HomeLibrary(QWidget *parent) :
     bookTableModel = new QSqlTableModel;
     usersTableModel = new QSqlTableModel;
     bookLendingTableModel = new QSqlTableModel;
+
+    ui->tableViewBooks->setModel(bookTableModel);
+    ui->tableViewUsers->setModel(usersTableModel);
+    ui->tableViewBookLending->setModel(bookLendingTableModel);
 }
 
 HomeLibrary::~HomeLibrary()
@@ -92,15 +96,10 @@ void HomeLibrary::RefreshData()
         else
             top = 1000;
 
-        // Setting query to specific query to model
+        // Refreshing models for all views
         usersTableModel->setQuery("EXEC ShowBooks @Barcode = '', @Title = '', @Author = '', @Publisher = '', @Top = 50;");
         bookTableModel->setQuery("EXEC ShowBooks @Barcode = '', @Title = '', @Author = '', @Publisher = '', @Top = '"+ QString::number(top) + "';");
-
-        // Putting model into View
-        ui->tableViewBooks->setModel(bookTableModel);
-        ui->tableViewUsers->setModel(usersTableModel);
-        ui->tableViewBookLending->setModel(bookTableModel);
-
+        bookLendingTableModel->setQuery("EXEC ShowBooks @Barcode = '', @Title = '', @Author = '', @Publisher = '', @Top = '"+ QString::number(top) + "';");
     }
     else
     {
@@ -110,6 +109,7 @@ void HomeLibrary::RefreshData()
 
 void HomeLibrary::on_Button_Search_clicked()
 {
+    // Home library - Books tab
     // First we're getting information about row on page, then serach filters
     QString barcode, title, publisher, year, author;
 
@@ -131,10 +131,23 @@ void HomeLibrary::on_Button_Search_clicked()
         // setting query and put model into view
         QString query = "EXEC ShowBooks @Barcode = '" + barcode + "', @Title = '" + title + "', @Author = '" + author + "', @Publisher = '" + publisher + "', @Top = '"+ QString::number(top) + "'"; 
         bookTableModel->setQuery(query);
-        ui->tableViewBooks->setModel(bookTableModel);
     }
     catch (...)
     {
         qDebug() << "SQL Query error: " << db.lastError();
     }
+}
+
+
+void HomeLibrary::on_pushButton_LendingSearch_clicked()
+{
+    // Action relate to serach button on lending tab.
+    // Executing right procedure and updating view
+
+    QString barcode, title, author;
+    barcode = ui->lineEdit_Barcode_2->text();
+    title = ui->lineEdit_Title_2->text();
+    author = ui->lineEdit_Author_2->text();
+    QString query = "EXEC ShowBooks @Barcode = '" + barcode + "', @Title = '" + title + "', @Author = '" + author + "', @Publisher = '""', @Top = '100'";
+    bookLendingTableModel->setQuery(query);
 }

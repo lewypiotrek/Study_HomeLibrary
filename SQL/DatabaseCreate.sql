@@ -212,21 +212,5 @@ GO
 
 
 
----------------------
--- TESTING DATA
----------------------
 
 
-
-DECLARE @Counter as INT = 1;
-WHILE @Counter <= 25
-BEGIN
-	INSERT INTO Books (barcode,Title,Author,Publisher) 
-	VALUES ('test' + CAST(@Counter as varchar),'test' +  CAST(@Counter as varchar),'test' +  CAST(@Counter as varchar),'test' +  CAST(@Counter as varchar))
-	
-	SET @Counter = @Counter + 1;
-END;
-
------------------------
-
---EXEC ShowBooks @Barcode = '', @Title = '', @Author = '', @Publisher = '', @Top = '10';
