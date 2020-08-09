@@ -35,12 +35,12 @@ Home Library allows users to manage their own library! Check it!
 	- **Tab: Your Books**:
 	In this tab you can add/ modify and delete your books. On the right side you have main GroupBox with all functionalities. The data in your view should be refreshed automaticly, but you can also do it manually via Options > Refresh.
 	
-	- **Tab: Notes:**
-	This tab alows you to add any note. If you have any reflections related to one of your book, you can save it and match with the right book.  
-	
 	- **Tab: Lending**
 	In this place you can lend your book to your friends. On the left side select book and on the right side select friend. After that click button "Lend a book"
 	
+	- **Tab: History:**
+	There you can check all lending history of specific books. This feature will be helpful if your favorite book comes with damage., in this case you'll be able to check all lending path and find the guilty user.
+		
 	- **Tab: Note**
 	In this tab you can add your notes for example some thoughts about your new book. 
  
