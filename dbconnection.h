@@ -21,7 +21,7 @@ public:
     QString GetDatabaseName();
 
     // Quering
-    QStringList ExecQuery(QString Query);
+    void ExecQuery(QString Query);
     QSqlQueryModel ExecTableQuery(QString Query);
     void ClearTableViewModel();
 

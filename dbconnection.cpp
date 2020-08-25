@@ -25,8 +25,8 @@ bool DbConnection::ConnectToDb(QString databaseName,
     this->serverName = serverName;      //LOCALHOST\\SQLEXPRESS
     this->user = user;                  //SA
     this->userPassword = userPassword;  //S*#rrQl*mA
+    connectionString = "DRIVER={SQL SERVER};SERVER="+ serverName +";DATABASE=" + databaseName + ";UID=" + user +";PWD=" + userPassword + ";Trusted_Connection=Yes;Port=1435";
 
-    connectionString = "DRIVER={SQL SERVER};SERVER="+ serverName +";DATABASE=" + databaseName + ";UID=" + user +";PWD=" + userPassword + ";Trusted_Connection=Yes";
     try {
         db.setDatabaseName(connectionString);
         status = db.open();
@@ -68,40 +68,22 @@ bool DbConnection::GetStaus()
     return status;
 }
 
-QStringList DbConnection::ExecQuery(QString Query)
+void DbConnection::ExecQuery(QString query)
 {
-    QSqlQuery QueryHandler(db);
-    QStringList List;
-
     try
     {
-        if(!QueryHandler.prepare(Query))
+        if(db.open())
         {
-            QString error = QueryHandler.lastError().text();
-            throw error;
+            db.transaction();
+            db.exec(query);
+            db.commit();
         }
-        else
-        {
-            QueryHandler.exec(Query);
-            int i = 0;
-            while(QueryHandler.next())
-            {
-                List << QueryHandler.value(i).toString();
-                i++;
-            }
-        }
-
     }
-    catch (QString & Error)
+    catch (...)
     {
-        QMessageBox msg;
-        msg.setText("Error(while quering): " + Error);
-        msg.setIcon(QMessageBox::Warning);
-        msg.exec();
+        db.rollback();
+        qDebug() << db.lastError().text();
     }
-
-
-    return List;
 }
 
 void DbConnection::CheckStatus()

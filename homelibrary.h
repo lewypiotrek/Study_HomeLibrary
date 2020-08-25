@@ -23,6 +23,7 @@ private:
     QSqlQueryModel *bookTableModel;
     QSqlQueryModel *usersTableModel;
     QSqlQueryModel *bookLendingTableModel;
+    QSqlQueryModel *notesTableModel;
 
 
 public:
@@ -36,6 +37,9 @@ private slots:
     void on_comboBox_currentIndexChanged(int index);
     void on_Button_Search_clicked();
     void on_pushButton_LendingSearch_clicked();
+    void on_pushButton_SaveNote_clicked();
+    void on_pushButton_DeleteNote_clicked();
+
 };
 
 #endif // HOMELIBRARY_H

@@ -192,25 +192,40 @@ BEGIN
 END
 GO
 
+
+-- CREATING AddNote
 --------------------------------
--- CREATING VIEWS --
+
+IF EXISTS ( SELECT * FROM sys.procedures WHERE [name] = 'AddNote')
+BEGIN
+	DROP PROCEDURE dbo.AddNote;
+END
+GO
+
+CREATE PROCEDURE AddNote @Title varchar(300), @Note varchar(MAX)
+AS
+BEGIN
+	IF NOT EXISTS(SELECT * FROM Notes WHERE Title = @Title)
+		BEGIN
+			INSERT INTO Notes (Title,Note,LastModificationTime)
+			VALUES (@Title,@Note,GETUTCDATE());
+		END
+END
+GO
+
+-- CREATING DeleteNote
 --------------------------------
 
---PRINT 'Creating views...'
+IF EXISTS ( SELECT * FROM sys.procedures WHERE [name] = 'DeleteNote')
+BEGIN
+	DROP PROCEDURE dbo.DeleteNote;
+END
+GO
 
----- All active users
---CREATE VIEW MyCommunityView AS	
---	SELECT 
---		[Name] AS Name,
---		[Address],
---		[info] AS Information
---	FROM 
---		Community
---	WHERE
---		 isActive = 1;
-
-
-
-
-
-
+CREATE PROCEDURE DeleteNote @Title varchar(300)
+AS
+BEGIN
+	DELETE FROM Notes
+	WHERE Title = @Title
+END
+GO

@@ -14,10 +14,15 @@ HomeLibrary::HomeLibrary(QWidget *parent) :
     bookTableModel = new QSqlTableModel;
     usersTableModel = new QSqlTableModel;
     bookLendingTableModel = new QSqlTableModel;
+    notesTableModel = new QSqlTableModel;
 
     ui->tableViewBooks->setModel(bookTableModel);
     ui->tableViewUsers->setModel(usersTableModel);
     ui->tableViewBookLending->setModel(bookLendingTableModel);
+    ui->listView_Note->setModel(notesTableModel);
+
+    // Set select mode for listView widgets
+    ui->listView_Note->setSelectionMode(QAbstractItemView::SingleSelection);
 }
 
 HomeLibrary::~HomeLibrary()
@@ -67,7 +72,6 @@ void HomeLibrary::on_actionCheck_connection_triggered()
     RefreshData();
 }
 
-
 void HomeLibrary::on_actionRefresh_Data_triggered()
 {
     RefreshData();
@@ -83,13 +87,11 @@ void HomeLibrary::on_comboBox_currentIndexChanged(int index)
     bookTableModel->setQuery("EXEC ShowBooks @Barcode = '', @Title = '', @Author = '', @Publisher = '', @Top = '"+ QString::number(index) + "';");
 }
 
-
 void HomeLibrary::RefreshData()
 {
     if(db.GetStaus())
     {
         ui->status->setText("STATUS: CONNECTED");
-
         int top =ui->comboBox->currentIndex();
         if(top != 6)
             top = (ui->comboBox->currentIndex() +1) * 10;
@@ -100,6 +102,7 @@ void HomeLibrary::RefreshData()
         usersTableModel->setQuery("EXEC ShowBooks @Barcode = '', @Title = '', @Author = '', @Publisher = '', @Top = 50;");
         bookTableModel->setQuery("EXEC ShowBooks @Barcode = '', @Title = '', @Author = '', @Publisher = '', @Top = '"+ QString::number(top) + "';");
         bookLendingTableModel->setQuery("EXEC ShowBooks @Barcode = '', @Title = '', @Author = '', @Publisher = '', @Top = '"+ QString::number(top) + "';");
+        notesTableModel->setQuery("SELECT Title FROM Notes");
     }
     else
     {
@@ -138,7 +141,6 @@ void HomeLibrary::on_Button_Search_clicked()
     }
 }
 
-
 void HomeLibrary::on_pushButton_LendingSearch_clicked()
 {
     // Action relate to serach button on lending tab.
@@ -151,3 +153,34 @@ void HomeLibrary::on_pushButton_LendingSearch_clicked()
     QString query = "EXEC ShowBooks @Barcode = '" + barcode + "', @Title = '" + title + "', @Author = '" + author + "', @Publisher = '""', @Top = '100'";
     bookLendingTableModel->setQuery(query);
 }
+
+void HomeLibrary::on_pushButton_SaveNote_clicked()
+{
+    //Adding note to the database, if note is empty skip action.
+    if ((!ui->textEdit_Note->toPlainText().isEmpty()) && (!ui->lineEdit_NoteTitle->text().isEmpty()))
+    {
+        QString note, title;
+        note = ui->textEdit_Note->toPlainText();
+        title = ui->lineEdit_NoteTitle->text();
+        QString query = "EXEC dbo.AddNote @Title = '" + title + "', @Note ='" + note + "'";
+        db.ExecQuery(query);
+    }
+    // Update views
+    RefreshData();
+
+}
+
+void HomeLibrary::on_pushButton_DeleteNote_clicked()
+{
+    // Deleting selected in listView_Notes row
+    QModelIndex index = ui->listView_Note->currentIndex();
+    QString title = index.data(Qt::DisplayRole).toString();
+
+    QString query = "EXEC DeleteNote @Title='" + title + "';";
+    db.ExecQuery(query);
+
+    // Update view
+    RefreshData();
+}
+
+
