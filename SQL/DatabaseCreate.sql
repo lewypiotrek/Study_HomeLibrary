@@ -5,9 +5,9 @@
 USE [master];
 GO
 
---------------------------------
+----------------------------------------------------------------
 -- CREATING DATABASE --
---------------------------------
+----------------------------------------------------------------
 BEGIN TRY
 IF EXISTS (SELECT * FROM sys.databases WHERE [name] = 'HomeLibrary')
 	BEGIN
@@ -27,9 +27,9 @@ GO
 
 USE HomeLibrary;
 
---------------------------------
--- CREATING STORED PROCEDURES --
---------------------------------
+----------------------------------------------------------------
+-- CREATING STORED PROCEDURE TO CREATE DATABASE --
+----------------------------------------------------------------
 
 --DROP PROCEDURE IF EXISTS dbo.DatabaseCreation;  Syntax for SQL 2016
  
@@ -124,18 +124,22 @@ BEGIN
 END	-- DatabaseCreation procedure end
 GO
 
-
-
-
 -- CREATING DATABASE VIA PROCEDURE
+----------------------------------------------------------------
 USE HomeLibrary;
 GO
 EXEC DatabaseCreation;
 GO
 
 
+
+----------------------------------------------------------------
+-- CREATING STORED PROCEDURES --
+----------------------------------------------------------------
+
+
 -- CREATING ShowBooks
---------------------------------
+----------------------------------------------------------------
 
 IF EXISTS ( SELECT * FROM sys.procedures WHERE [name] = 'ShowBooks')
 BEGIN
@@ -165,7 +169,7 @@ END
 GO
 
 -- CREATING ShowUsers
---------------------------------
+----------------------------------------------------------------
 
 IF EXISTS ( SELECT * FROM sys.procedures WHERE [name] = 'ShowUsers')
 BEGIN
@@ -194,7 +198,7 @@ GO
 
 
 -- CREATING AddNote
---------------------------------
+----------------------------------------------------------------
 
 IF EXISTS ( SELECT * FROM sys.procedures WHERE [name] = 'AddNote')
 BEGIN
@@ -210,11 +214,17 @@ BEGIN
 			INSERT INTO Notes (Title,Note,LastModificationTime)
 			VALUES (@Title,@Note,GETUTCDATE());
 		END
+	ELSE
+		BEGIN
+			UPDATE Notes
+			SET Note = @Note
+			WHERE Title = @Title
+		END
 END
 GO
 
 -- CREATING DeleteNote
---------------------------------
+----------------------------------------------------------------
 
 IF EXISTS ( SELECT * FROM sys.procedures WHERE [name] = 'DeleteNote')
 BEGIN

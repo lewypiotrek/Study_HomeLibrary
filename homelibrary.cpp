@@ -183,4 +183,14 @@ void HomeLibrary::on_pushButton_DeleteNote_clicked()
     RefreshData();
 }
 
-
+void HomeLibrary::on_listView_Note_clicked(const QModelIndex &index)
+{
+    // Show selected note in editable views
+    QString title = index.data(Qt::DisplayRole).toString();
+    QSqlQuery query;
+    query.exec("SELECT Note FROM Notes WHERE title ='" + title + "';");
+    query.next();   // we need use next because by default internal query pointer is located before first result
+    QString note = query.value(0).toString();
+    ui->textEdit_Note->setText(note);
+    ui->lineEdit_NoteTitle->setText(title);
+}

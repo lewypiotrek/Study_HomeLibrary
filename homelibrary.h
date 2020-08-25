@@ -40,6 +40,7 @@ private slots:
     void on_pushButton_SaveNote_clicked();
     void on_pushButton_DeleteNote_clicked();
 
+    void on_listView_Note_clicked(const QModelIndex &index);
 };
 
 #endif // HOMELIBRARY_H
