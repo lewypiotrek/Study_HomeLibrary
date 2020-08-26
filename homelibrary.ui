@@ -77,7 +77,7 @@ QPushButton:pressed  {
        <enum>QTabWidget::Triangular</enum>
       </property>
       <property name="currentIndex">
-       <number>3</number>
+       <number>0</number>
       </property>
       <property name="documentMode">
        <bool>false</bool>
@@ -181,7 +181,7 @@ QPushButton:pressed  {
               </size>
              </property>
              <property name="text">
-              <string>UPDATE</string>
+              <string>UPDATE / ADD</string>
              </property>
             </widget>
            </item>
@@ -374,10 +374,13 @@ QPushButton:pressed  {
               <widget class="QLineEdit" name="lineEdit_Author_2"/>
              </item>
              <item row="17" column="0">
-              <widget class="QLineEdit" name="lineEdit_2"/>
+              <widget class="QLineEdit" name="lineEdit_LendingUser"/>
              </item>
              <item row="18" column="0">
               <widget class="QPushButton" name="pushButton_Lend">
+               <property name="enabled">
+                <bool>false</bool>
+               </property>
                <property name="minimumSize">
                 <size>
                  <width>0</width>
@@ -465,7 +468,7 @@ QPushButton:pressed  {
               </widget>
              </item>
              <item row="15" column="0">
-              <widget class="QLineEdit" name="lineEdit_3"/>
+              <widget class="QLineEdit" name="lineEdit_LendinBarcode"/>
              </item>
              <item row="4" column="0">
               <widget class="QLabel" name="label_Author_2">
@@ -483,7 +486,7 @@ QPushButton:pressed  {
              <item row="16" column="0">
               <widget class="QLabel" name="label_UserBarcode">
                <property name="text">
-                <string>User:</string>
+                <string>User name:</string>
                </property>
               </widget>
              </item>
@@ -515,6 +518,99 @@ QPushButton:pressed  {
        <attribute name="title">
         <string>History</string>
        </attribute>
+       <layout class="QHBoxLayout" name="horizontalLayout_4">
+        <item>
+         <layout class="QGridLayout" name="gridLayout_2">
+          <item row="0" column="2">
+           <layout class="QVBoxLayout" name="verticalLayout_5"/>
+          </item>
+          <item row="0" column="3">
+           <layout class="QVBoxLayout" name="verticalLayout_4">
+            <item>
+             <widget class="QLabel" name="label_3">
+              <property name="font">
+               <font>
+                <pointsize>12</pointsize>
+                <weight>75</weight>
+                <bold>true</bold>
+               </font>
+              </property>
+              <property name="text">
+               <string>Insert book barcode to check history:</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLineEdit" name="lineEdit_HistoryBarcode"/>
+            </item>
+            <item>
+             <widget class="QPushButton" name="pushButton_HistoryCheck">
+              <property name="minimumSize">
+               <size>
+                <width>0</width>
+                <height>35</height>
+               </size>
+              </property>
+              <property name="text">
+               <string>Check *</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="pushButton_HistoryComplete">
+              <property name="minimumSize">
+               <size>
+                <width>0</width>
+                <height>35</height>
+               </size>
+              </property>
+              <property name="text">
+               <string>Mark as completed **</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <spacer name="verticalSpacer_2">
+              <property name="orientation">
+               <enum>Qt::Vertical</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>20</width>
+                <height>40</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+            <item>
+             <widget class="QLabel" name="label_5">
+              <property name="text">
+               <string>* Scan/ Insert barcode and click &quot;Check&quot; to check if your book is borrowed.</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLabel" name="label_6">
+              <property name="text">
+               <string>** Select BARCODE from the table and click &quot;Mark as completed&quot; to complete book lending.</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item row="0" column="0">
+           <widget class="Line" name="line">
+            <property name="orientation">
+             <enum>Qt::Vertical</enum>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="QTableView" name="tableView_history"/>
+          </item>
+         </layout>
+        </item>
+       </layout>
       </widget>
       <widget class="QWidget" name="tab_4">
        <attribute name="title">

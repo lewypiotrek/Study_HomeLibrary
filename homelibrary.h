@@ -24,6 +24,11 @@ private:
     QSqlQueryModel *usersTableModel;
     QSqlQueryModel *bookLendingTableModel;
     QSqlQueryModel *notesTableModel;
+    QSqlQueryModel *historyTableModel;
+
+    void UnlockBookAdding();
+    void UnlockBookDeleting();
+    void UnlockLendingButton();
 
 
 public:
@@ -39,8 +44,20 @@ private slots:
     void on_pushButton_LendingSearch_clicked();
     void on_pushButton_SaveNote_clicked();
     void on_pushButton_DeleteNote_clicked();
-
     void on_listView_Note_clicked(const QModelIndex &index);
+    void on_tableViewBookLending_clicked(const QModelIndex &index);
+    void on_tableViewUsers_clicked(const QModelIndex &index);
+    void on_Button_Update_clicked();
+    void on_lineEdit_Barcode_textChanged(const QString &arg1);
+    void on_lineEdit_Author_textChanged(const QString &arg1);
+    void on_lineEdit_Title_textChanged(const QString &arg1);
+    void on_Button_Delete_clicked();
+    void on_lineEdit_LendinBarcode_textChanged(const QString &arg1);
+    void on_lineEdit_LendingUser_textChanged(const QString &arg1);
+    void on_pushButton_Lend_clicked();
+    void on_tableView_history_clicked(const QModelIndex &index);
+    void on_pushButton_HistoryComplete_clicked();
+    void on_pushButton_HistoryCheck_clicked();
 };
 
 #endif // HOMELIBRARY_H

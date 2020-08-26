@@ -4,7 +4,7 @@
 
 USE [master];
 GO
-
+--DROP DATABASE HomeLibrary
 ----------------------------------------------------------------
 -- CREATING DATABASE --
 ----------------------------------------------------------------
@@ -54,7 +54,9 @@ BEGIN
 				Title				varchar(200) NOT NULL,
 				Author				varchar(200),
 				Publisher			varchar(150),
-				PublicationDate		varchar(8),
+				PublicationDate		varchar(10),
+				isAvailable			bit DEFAULT 1,
+				isActive			bit DEFAULT 1,
 				CreationTImestamp	datetime DEFAULT GETUTCDATE(),				
 			);
 
@@ -62,7 +64,6 @@ BEGIN
 	END
 	ELSE
 		PRINT 'Table Books already exists';
-
 
 -- Community
 	IF NOT EXISTS (SELECT * FROM sys.tables WHERE [name] = 'Community')
@@ -122,6 +123,7 @@ BEGIN
 
 
 END	-- DatabaseCreation procedure end
+PRINT 'Stored Procedure DatabaseCreation has been created'
 GO
 
 -- CREATING DATABASE VIA PROCEDURE
@@ -130,7 +132,6 @@ USE HomeLibrary;
 GO
 EXEC DatabaseCreation;
 GO
-
 
 
 ----------------------------------------------------------------
@@ -162,9 +163,11 @@ BEGIN
 		Barcode LIKE '%'+ @Barcode + '%' AND
 		Title LIKE '%'+ @Title + '%' AND
 		Author LIKE '%'+ @Author + '%' AND
-		Publisher LIKE '%'+ @Publisher + '%'
+		Publisher LIKE '%'+ @Publisher + '%'AND
+		isActive = 1 AND
+		isAvailable = 1
 	ORDER BY
-		Title
+		Title;
 END
 GO
 
@@ -195,7 +198,6 @@ BEGIN
 		[Name]
 END
 GO
-
 
 -- CREATING AddNote
 ----------------------------------------------------------------
@@ -236,6 +238,190 @@ CREATE PROCEDURE DeleteNote @Title varchar(300)
 AS
 BEGIN
 	DELETE FROM Notes
-	WHERE Title = @Title
+	WHERE Title = @Title;
+
 END
 GO
+
+
+-- CREATING DeleteBook
+----------------------------------------------------------------
+
+IF EXISTS ( SELECT * FROM sys.procedures WHERE [name] = 'DeleteBook')
+BEGIN
+	DROP PROCEDURE dbo.DeleteBook;
+END
+GO
+
+CREATE PROCEDURE DeleteBook @barcode varchar(300)
+AS
+BEGIN
+	DELETE FROM Books
+	WHERE Barcode = @barcode;
+
+END
+GO
+
+-- CREATING AddBook
+----------------------------------------------------------------
+
+IF EXISTS ( SELECT * FROM sys.procedures WHERE [name] = 'AddBook')
+BEGIN
+	DROP PROCEDURE dbo.AddBook;
+END
+GO
+
+CREATE PROCEDURE AddBook @barcode varchar(200), @title varchar(200), @author varchar(200), @publisher varchar(200), @publicationDate varchar(200)
+AS
+BEGIN
+	IF NOT EXISTS (SELECT * FROM Books WHERE Barcode = @barcode)
+		BEGIN
+			INSERT INTO Books (barcode,Title,Author,Publisher,PublicationDate)
+			VALUES (@barcode,@title,@author,@publisher,@publicationDate);
+		END
+	ELSE
+		BEGIN
+			UPDATE Books
+			SET Title = @title, Author = @author, Publisher = @publisher, PublicationDate = @publicationDate
+			WHERE Barcode = @barcode 
+		END
+END
+GO
+
+
+-- CREATING DeleteBook
+----------------------------------------------------------------
+
+IF EXISTS ( SELECT * FROM sys.procedures WHERE [name] = 'DeleteBook')
+BEGIN
+	DROP PROCEDURE dbo.DeleteBook;
+END
+GO
+
+CREATE PROCEDURE DeleteBook @barcode varchar(200)
+AS
+BEGIN
+	IF EXISTS (SELECT * FROM Books WHERE Barcode = @barcode)
+		BEGIN
+			UPDATE Books
+			SET isActive = 0
+			WHERE Barcode = @barcode
+		END
+END
+GO
+
+
+-- CREATING LendBook
+----------------------------------------------------------------
+
+IF EXISTS ( SELECT * FROM sys.procedures WHERE [name] = 'LendBook')
+BEGIN
+	DROP PROCEDURE dbo.LendBook;
+END
+GO
+
+CREATE PROCEDURE LendBook @barcode varchar(200), @user varchar(200)
+AS
+BEGIN
+	DECLARE @Bookid INT;
+	DECLARE @CommunityID INT;
+
+	SET @Bookid = (SELECT TOP 1 BooksId FROM Books WHERE Barcode = @barcode);
+	SET @CommunityID = (SELECT TOP 1 CommunityId FROM Community WHERE [Name] = @user);
+
+	INSERT INTO Lending (CommunityId,BookId)
+	VALUES (@CommunityID,@Bookid);
+
+	UPDATE Books
+	SET isAvailable = 0
+	WHERE Barcode = @barcode;
+	
+END
+GO
+
+
+-- CREATING ShowBorrowedBooks
+----------------------------------------------------------------
+
+IF EXISTS ( SELECT * FROM sys.procedures WHERE [name] = 'ShowBorrowedBooks')
+BEGIN
+	DROP PROCEDURE dbo.ShowBorrowedBooks;
+END
+GO
+
+CREATE PROCEDURE ShowBorrowedBooks 
+AS
+BEGIN
+
+	SELECT 
+		b.Barcode AS Barcode,
+		b.Title AS Title,
+		c.[name] AS [User name],
+		l.CreationDate AS [Borrow Date]	
+	FROM
+		Lending l
+		INNER JOIN Community c on l.CommunityId = c.CommunityId
+		INNER JOIN Books b on b.BooksId = l.BookId
+	WHERE
+		l.ReturnDate IS NULL AND
+		b.isAvailable = 0;
+			
+END
+GO
+
+-- CREATING CompleteLending
+----------------------------------------------------------------
+
+IF EXISTS ( SELECT * FROM sys.procedures WHERE [name] = 'CompleteLending')
+BEGIN
+	DROP PROCEDURE dbo.CompleteLending;
+END
+GO
+
+CREATE PROCEDURE CompleteLending  @barcode varchar(200)
+AS
+BEGIN
+	
+	UPDATE Books
+	SET isAvailable = 1
+	WHERE Barcode = @barcode;
+
+	UPDATE Lending
+	SET LastModificationTime = GETUTCDATE(), ReturnDate = GETUTCDATE()
+	WHERE bookid = (SELECT BooksId FROM Books WHERE Barcode = @barcode)
+			
+END
+GO
+
+
+-- CREATING ShowHistoryByFilter
+----------------------------------------------------------------
+
+IF EXISTS ( SELECT * FROM sys.procedures WHERE [name] = 'ShowHistoryByFilter')
+BEGIN
+	DROP PROCEDURE dbo.ShowHistoryByFilter;
+END
+GO
+
+CREATE PROCEDURE ShowHistoryByFilter  @barcode varchar(200)
+AS
+BEGIN
+	SELECT 
+		b.Barcode AS Barcode,
+		b.Title AS Title,
+		c.[name] AS [User name],
+		l.CreationDate AS [Borrow Date]	
+	FROM
+		Lending l
+		INNER JOIN Community c on l.CommunityId = c.CommunityId
+		INNER JOIN Books b on b.BooksId = l.BookId
+	WHERE
+		l.ReturnDate IS NULL AND
+		b.isAvailable = 0 AND
+		b.Barcode = @barcode;			
+END
+GO
+
+
+--------------------------------------------------------------------------
+--------------------------------------------------------------------------
