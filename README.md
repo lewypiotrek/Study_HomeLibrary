@@ -37,13 +37,15 @@ Home Library allows users to manage their own library! Check it!
 	
 	- **Tab: Lending**
 	In this place you can lend your book to your friends. On the left side select book and on the right side select friend. After that click button "Lend a book"
+	If you want to add a new friend click option > Add User. The User creation window will be opend where you will be able to add a new friend.
 	
 	- **Tab: History:**
-	There you can check all lending history of specific books. This feature will be helpful if your favorite book comes with damage., in this case you'll be able to check all lending path and find the guilty user.
+	There you can check lending history of specific books. If somebody bring your book back, you can mark this book as received. 
 		
 	- **Tab: Note**
 	In this tab you can add your notes for example some thoughts about your new book. 
  
+
 
 -------------------------------------------------------------------------
 
