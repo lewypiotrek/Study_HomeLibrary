@@ -1,6 +1,5 @@
 # Study_HomeLibrary
 
-## INFO: STILL IN PROGRESS
 
 Home Library allows users to manage their own library! Check it!
 
