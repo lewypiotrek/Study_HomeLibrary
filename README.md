@@ -19,7 +19,7 @@ Home Library allows users to manage their own library! Check it!
 - **GUIDE HOW TO USE IT**
 
 	- **Database connection**:
-	If you already installed your SQL instance you can start using my program. Firstly, you have to create a new database. There are two ways how you can do it. 
+	If you already installed your SQL instance you can start using my program. Firstly, you have to create a new database. In version 1.0 is only one option how you can do it:
 
 	SQL Script - You can use SQL script which you can find in the folder SQL, named "DatabaseCreate.sql". Open this file via SSMS on your SQL instance and execute. You can also use any other management software, then just copy the content from the file and paste in a new query window.
 
