@@ -759,6 +759,8 @@ QPushButton:pressed  {
     <addaction name="actionAbout"/>
     <addaction name="separator"/>
     <addaction name="actionRefresh_Data"/>
+    <addaction name="separator"/>
+    <addaction name="actionAdd_User"/>
    </widget>
    <addaction name="menuOptions"/>
   </widget>
@@ -780,6 +782,11 @@ QPushButton:pressed  {
   <action name="actionRefresh_Data">
    <property name="text">
     <string>Refresh Data</string>
+   </property>
+  </action>
+  <action name="actionAdd_User">
+   <property name="text">
+    <string>Add User</string>
    </property>
   </action>
  </widget>

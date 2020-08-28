@@ -24,7 +24,7 @@ bool DbConnection::ConnectToDb(QString databaseName,
     this->databaseName = databaseName;  //CRM
     this->serverName = serverName;      //LOCALHOST\\SQLEXPRESS
     this->user = user;                  //SA
-    this->userPassword = userPassword;  //S*#rrQl*mA
+    this->userPassword = userPassword;
     connectionString = "DRIVER={SQL SERVER};SERVER="+ serverName +";DATABASE=" + databaseName + ";UID=" + user +";PWD=" + userPassword + ";Trusted_Connection=Yes;Port=1435";
 
     try {

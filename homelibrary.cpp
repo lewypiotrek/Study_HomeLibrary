@@ -1,6 +1,7 @@
 #include "homelibrary.h"
 #include "ui_homelibrary.h"
 #include "databasesetting.h"
+#include "usersetting.h"
 
 HomeLibrary::HomeLibrary(QWidget *parent) :
     QMainWindow(parent),
@@ -402,5 +403,14 @@ void HomeLibrary::on_pushButton_HistoryCheck_clicked()
     {
        qDebug() << db.lastError();
     }
+}
 
+void HomeLibrary::on_actionAdd_User_triggered()
+{
+    // ADD USER - open window user settings after click in option
+
+    UserSetting userWindow;
+    userWindow.CopyPtrToDb(&db);
+    userWindow.setModal(true);
+    userWindow.exec();
 }

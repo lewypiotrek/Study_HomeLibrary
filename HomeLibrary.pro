@@ -30,17 +30,20 @@ SOURCES += \
         dbconnection.cpp \
         filedriver.cpp \
         main.cpp \
-        homelibrary.cpp
+        homelibrary.cpp \
+        usersetting.cpp
 
 HEADERS += \
         databasesetting.h \
         dbconnection.h \
         filedriver.h \
-        homelibrary.h
+        homelibrary.h \
+        usersetting.h
 
 FORMS += \
         databasesetting.ui \
-        homelibrary.ui
+        homelibrary.ui \
+        usersetting.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

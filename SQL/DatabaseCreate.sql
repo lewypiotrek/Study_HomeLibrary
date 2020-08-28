@@ -422,6 +422,44 @@ BEGIN
 END
 GO
 
+-- CREATING AddUser
+----------------------------------------------------------------
+
+IF EXISTS ( SELECT * FROM sys.procedures WHERE [name] = 'AddUser')
+BEGIN
+	DROP PROCEDURE dbo.AddUser;
+END
+GO
+
+CREATE PROCEDURE AddUser  @username varchar(200),@address varchar(200),@info varchar(200)
+AS
+BEGIN
+	IF NOT EXISTS (SELECT * FROM Community WHERE [Name] = @username)
+	BEGIN
+		INSERT INTO Community ([Name],[Address],Info)
+		VALUES (@username,@address,@info);
+	END		
+END
+GO
+
+
+-- CREATING DeleteUser
+----------------------------------------------------------------
+
+IF EXISTS ( SELECT * FROM sys.procedures WHERE [name] = 'DeleteUser')
+BEGIN
+	DROP PROCEDURE dbo.DeleteUser;
+END
+GO
+
+CREATE PROCEDURE DeleteUser  @username varchar(200)
+AS
+BEGIN
+	UPDATE Community
+	SET isActive = 0
+	WHERE [Name] = @username;	
+END
+GO
 
 --------------------------------------------------------------------------
 --------------------------------------------------------------------------
