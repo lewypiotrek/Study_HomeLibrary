@@ -1,6 +1,5 @@
 # Study_HomeLibrary
 
-## INFO: STILL IN PROGRESS
 
 Home Library allows users to manage their own library! Check it!
 
@@ -20,13 +19,9 @@ Home Library allows users to manage their own library! Check it!
 - **GUIDE HOW TO USE IT**
 
 	- **Database connection**:
-	If you already installed your SQL instance you can start using my program. Firstly, you have to create a new database. There are two ways how you can do it. 
+	If you already installed your SQL instance you can start using my program. Firstly, you have to create a new database. In version 1.0 is only one option how you can do it:
 
 	SQL Script - You can use SQL script which you can find in the folder SQL, named "DatabaseCreate.sql". Open this file via SSMS on your SQL instance and execute. You can also use any other management software, then just copy the content from the file and paste in a new query window.
-
-	or 
-
-	Application - Open my program, click "Options" in the top left corner. Then select "Database settings". You'll see a new window where you can insert your connection string to the database. Please do it and next click button "Create new database". In this case, you need to be careful because application will connect to your instance, and if a database named "HomeLibrary" already exists, application will not create a any database, so If you want to create a clear database, firstly you have to ensure that you don't have the same database on this SQL instance.
 
 
 	- **Database - Save connection string**:
@@ -37,13 +32,15 @@ Home Library allows users to manage their own library! Check it!
 	
 	- **Tab: Lending**
 	In this place you can lend your book to your friends. On the left side select book and on the right side select friend. After that click button "Lend a book"
+	If you want to add a new friend click option > Add User. The User creation window will be opend where you will be able to add a new friend.
 	
 	- **Tab: History:**
-	There you can check all lending history of specific books. This feature will be helpful if your favorite book comes with damage., in this case you'll be able to check all lending path and find the guilty user.
+	There you can check lending history of specific books. If somebody bring your book back, you can mark this book as received. 
 		
 	- **Tab: Note**
 	In this tab you can add your notes for example some thoughts about your new book. 
  
+
 
 -------------------------------------------------------------------------
 
