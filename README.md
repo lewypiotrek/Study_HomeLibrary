@@ -23,10 +23,6 @@ Home Library allows users to manage their own library! Check it!
 
 	SQL Script - You can use SQL script which you can find in the folder SQL, named "DatabaseCreate.sql". Open this file via SSMS on your SQL instance and execute. You can also use any other management software, then just copy the content from the file and paste in a new query window.
 
-	or 
-
-	Application - Open my program, click "Options" in the top left corner. Then select "Database settings". You'll see a new window where you can insert your connection string to the database. Please do it and next click button "Create new database". In this case, you need to be careful because application will connect to your instance, and if a database named "HomeLibrary" already exists, application will not create a any database, so If you want to create a clear database, firstly you have to ensure that you don't have the same database on this SQL instance.
-
 
 	- **Database - Save connection string**:
 	You don't have to insert connections string every time when you open the program. There is an option to save your connection string in the file Config.txt. You can do it via app Option > Database Settings > Insert your connection string and click "Save" button, your credentials will be saved in Config.txt file. After that when you will open program again you can just click Option > Check connection... and the program will automatically check credentials and perform connection attemp.
