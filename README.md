@@ -45,8 +45,7 @@ Home Library allows users to manage their own library! Check it!
 -------------------------------------------------------------------------
 ** Overview:**
 
-![GitHub Logo](/img/screenshot_1.png)
-Format: ![Your book tab](url)
+![alt text](https://github.com/lewypiotrek/Study_HomeLibrary/blob/master/Img/Screenshot_1.PNG)
 
 
 
