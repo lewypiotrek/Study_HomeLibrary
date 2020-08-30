@@ -46,6 +46,11 @@ Home Library allows users to manage their own library! Check it!
 ** Overview:**
 
 ![alt text](https://github.com/lewypiotrek/Study_HomeLibrary/blob/master/Img/Screenshot_1.PNG)
+-------------------------------------------------------------------------
+![alt text](https://github.com/lewypiotrek/Study_HomeLibrary/blob/master/Img/Screenshot_2.PNG)
+-------------------------------------------------------------------------
+![alt text](https://github.com/lewypiotrek/Study_HomeLibrary/blob/master/Img/Screenshot_3.PNG)
+-------------------------------------------------------------------------
 
 
 
